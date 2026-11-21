@@ -16,9 +16,11 @@ image = (
         "python-multipart>=0.0.9",
         "httpx>=0.27.0",
     )
+    .add_local_python_source("src")
 )
 
 modal_app = modal.App(name=app_name, image=image)
+app = modal_app
 
 
 # Set concurrency_limit=1 (renamed to max_containers=1 in Modal 1.x) to guarantee single-container state consistency
