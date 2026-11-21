@@ -1,0 +1,7 @@
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.8.0
+cryptography>=43.0.0
+prometheus-client>=0.20.0
+python-multipart>=0.0.9
+modal>=1.0.0
