@@ -1,0 +1,271 @@
+{
+  "nlu_parse_schedule": {
+    "standard_schedule": {
+      "message": "Remind Bob (+919123456789) tomorrow at 9:00 AM to bring the project slides",
+      "timezone": "Asia/Kolkata"
+    },
+    "specific_date": {
+      "message": "Schedule message to Dr. Sharma (+919876500000) on 2026-11-25 at 16:30 for root canal follow-up",
+      "timezone": "Asia/Kolkata"
+    },
+    "missing_phone": {
+      "message": "Remind John tomorrow at 10am to call the client",
+      "timezone": "Asia/Kolkata"
+    }
+  },
+  "inbound_webhooks": {
+    "alice_schedule_request": {
+      "object": "whatsapp_business_account",
+      "entry": [
+        {
+          "id": "WABA_ACCOUNT_ID",
+          "changes": [
+            {
+              "field": "messages",
+              "value": {
+                "messaging_product": "whatsapp",
+                "metadata": {
+                  "display_phone_number": "15551234567",
+                  "phone_number_id": "15551234567"
+                },
+                "contacts": [{ "profile": { "name": "Alice" }, "wa_id": "919876543210" }],
+                "messages": [
+                  {
+                    "from": "919876543210",
+                    "id": "wamid.HBgMOTE5ODc2NTQzMjEwFQIAEhggMTAx...",
+                    "timestamp": "1795205400",
+                    "type": "text",
+                    "text": {
+                      "body": "Remind Bob (+919123456789) tomorrow at 9:00 AM to bring the project slides"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "alice_button_already_sent": {
+      "object": "whatsapp_business_account",
+      "entry": [
+        {
+          "id": "WABA_ACCOUNT_ID",
+          "changes": [
+            {
+              "field": "messages",
+              "value": {
+                "messaging_product": "whatsapp",
+                "metadata": { "display_phone_number": "15551234567", "phone_number_id": "15551234567" },
+                "contacts": [{ "profile": { "name": "Alice" }, "wa_id": "919876543210" }],
+                "messages": [
+                  {
+                    "from": "919876543210",
+                    "id": "wamid.HBgMOTE5ODc2NTQzMjEwFQIAEhggMTA2...",
+                    "timestamp": "1795205450",
+                    "type": "interactive",
+                    "interactive": {
+                      "type": "button_reply",
+                      "button_reply": {
+                        "id": "SENT_VIA_PERSONAL:a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                        "title": "✅ I Sent It"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "bob_opt_in": {
+      "object": "whatsapp_business_account",
+      "entry": [
+        {
+          "id": "WABA_ACCOUNT_ID",
+          "changes": [
+            {
+              "field": "messages",
+              "value": {
+                "messaging_product": "whatsapp",
+                "metadata": { "display_phone_number": "15551234567", "phone_number_id": "15551234567" },
+                "contacts": [{ "profile": { "name": "Bob" }, "wa_id": "919123456789" }],
+                "messages": [
+                  {
+                    "from": "919123456789",
+                    "id": "wamid.HBgMOTE5MTIzNDU2Nzg5FQIAEhggMTAz...",
+                    "timestamp": "1795205420",
+                    "type": "text",
+                    "text": { "body": "START" }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "bob_opt_out_stop": {
+      "object": "whatsapp_business_account",
+      "entry": [
+        {
+          "id": "WABA_ACCOUNT_ID",
+          "changes": [
+            {
+              "field": "messages",
+              "value": {
+                "messaging_product": "whatsapp",
+                "metadata": { "display_phone_number": "15551234567", "phone_number_id": "15551234567" },
+                "contacts": [{ "profile": { "name": "Bob" }, "wa_id": "919123456789" }],
+                "messages": [
+                  {
+                    "from": "919123456789",
+                    "id": "wamid.HBgMOTE5MTIzNDU2Nzg5FQIAEhggMTA0...",
+                    "timestamp": "1795205430",
+                    "type": "text",
+                    "text": { "body": "STOP" }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "status_delivered": {
+      "object": "whatsapp_business_account",
+      "entry": [
+        {
+          "id": "WABA_ACCOUNT_ID",
+          "changes": [
+            {
+              "field": "messages",
+              "value": {
+                "messaging_product": "whatsapp",
+                "metadata": { "display_phone_number": "15551234567", "phone_number_id": "15551234567" },
+                "statuses": [
+                  {
+                    "id": "wamid.HBgMOTE5ODc2NTQzMjEwFQIAERgSQkE3...",
+                    "status": "delivered",
+                    "timestamp": "1795205480",
+                    "recipient_id": "919876543210"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "quality_alert_red": {
+      "object": "whatsapp_business_account",
+      "entry": [
+        {
+          "id": "WABA_ACCOUNT_ID",
+          "changes": [
+            {
+              "field": "phone_number_quality_update",
+              "value": {
+                "display_phone_number": "15551234567",
+                "event": "FLAGGED",
+                "current_limit": "TIER_1K",
+                "quality_rating": "RED"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "outbound_meta_graph_templates": {
+    "hybrid_notify_alice_v1": {
+      "messaging_product": "whatsapp",
+      "to": "919876543210",
+      "type": "template",
+      "template": {
+        "name": "hybrid_notify_alice_v1",
+        "language": { "code": "en" },
+        "components": [
+          {
+            "type": "body",
+            "parameters": [
+              { "type": "text", "text": "Bob" },
+              { "type": "text", "text": "8:50 AM" }
+            ]
+          }
+        ]
+      }
+    },
+    "hybrid_dispatch_card_v1": {
+      "messaging_product": "whatsapp",
+      "to": "919876543210",
+      "type": "template",
+      "template": {
+        "name": "hybrid_dispatch_card_v1",
+        "language": { "code": "en" },
+        "components": [
+          {
+            "type": "body",
+            "parameters": [
+              { "type": "text", "text": "Bob" },
+              { "type": "text", "text": "9:00 AM" }
+            ]
+          },
+          {
+            "type": "button",
+            "sub_type": "url",
+            "index": "0",
+            "parameters": [
+              { "type": "text", "text": "919123456789?text=Bring%20the%20project%20slides" }
+            ]
+          }
+        ]
+      }
+    },
+    "scheduled_relay_v1": {
+      "messaging_product": "whatsapp",
+      "to": "919123456789",
+      "type": "template",
+      "template": {
+        "name": "scheduled_relay_v1",
+        "language": { "code": "en" },
+        "components": [
+          {
+            "type": "body",
+            "parameters": [
+              { "type": "text", "text": "Alice (+91-98XXX-43210)" },
+              { "type": "text", "text": "Bring the project slides" },
+              { "type": "text", "text": "Alice" }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "kms_operations": {
+    "generate_key": {
+      "key_spec": "AES_256"
+    },
+    "encrypt_sample": {
+      "plaintext_b64": "QnJpbmcgdGhlIHByb2plY3Qgc2xpZGVz"
+    }
+  },
+  "simulation_harness": {
+    "simulate_inbound_schedule": {
+      "sender_wa_id": "919876543210",
+      "sender_name": "Alice",
+      "message": "Remind Bob (+919123456789) tomorrow at 9:00 AM to bring the project slides"
+    },
+    "simulate_button_click": {
+      "sender_wa_id": "919876543210",
+      "sender_name": "Alice",
+      "button_id": "SENT_VIA_PERSONAL:job-12345",
+      "button_title": "✅ I Sent It"
+    },
+    "set_quality": {
+      "phone_number_id": "15551234567",
+      "quality_rating": "YELLOW"
+    }
+  }
+}
